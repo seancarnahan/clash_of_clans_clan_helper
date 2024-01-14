@@ -2,12 +2,29 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'package:clash_of_clans_clan_helper/domain/entities/clan_search_result.dart';
 import 'package:clash_of_clans_clan_helper/domain/repositories/clan_repository.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 
 class ClashOfClansApi implements ClanRepository {
   final String baseUrl = 'https://api.clashofclans.com/v1';
   final String apiToken = 'your_api_token_here'; // Secure your token
+
+  @override
+  Future<List<ClanSearchResult>> searchClans(String name) async {
+    final response = await http.get(
+      Uri.parse('$baseUrl/clans?name=$name'),
+      headers: {
+        'Authorization': 'Bearer $apiToken',
+      },
+    );
+    if (response.statusCode == 200) {
+      List<dynamic> clansJson = json.decode(response.body)['items'];
+      return clansJson.map((clanJson) => ClanSearchResult.fromJson(clanJson)).toList();
+    } else {
+      throw Exception('Failed to search clans');
+    }
+  }
 
   @override
   Future<Clan> getClanDetails(String clanTag) async {
