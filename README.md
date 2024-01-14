@@ -1,16 +1,27 @@
 # clash_of_clans_clan_helper
 
-A new Flutter project.
+A Clash of Clans tool to help with strategy and analysis of both your own clan and others
 
-## Getting Started
+## Running the application
+"cp config/app_config_example.json app_config.json" and then replace with actual credentials
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Hexagonical Architecture
+flutter_project/
+├── lib/
+│   ├── domain/              # Core business logic
+│   │   ├── entities/
+│   │   ├── repositories/
+│   │   └── use_cases/
+│   ├── infrastructure/      # Adapters for external concerns (e.g., API, database)
+│   │   ├── api/
+│   │   ├── db/
+│   │   └── ...
+│   ├── presentation/        # UI layer (screens, widgets)
+│   │   ├── screens/
+│   │   ├── widgets/
+│   │   └── ...
+│   ├── application/         # Application layer, connecting UI and domain
+│   │   ├── ports/           # Ports interfaces
+│   │   └── services/        # Services implementing the ports
+│   └── main.dart
+├── ...
