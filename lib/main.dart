@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:clash_of_clans_clan_helper/presentation/themes/clash_of_clans_theme.dart';
 import 'package:clash_of_clans_clan_helper/presentation/screens/home/HomeScreen.dart';
-import 'package:clash_of_clans_clan_helper/infrastructure/environment_service.dart';
+import 'package:clash_of_clans_clan_helper/infrastructure/services/environment_service.dart';
 
 void main() {
   runApp(const MyApp());

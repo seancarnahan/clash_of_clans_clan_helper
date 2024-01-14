@@ -32,6 +32,19 @@ ThemeData buildClashOfClansTheme() {
       ),
     ),
 
+    // Elevated Button theme
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.deepOrangeAccent,
+        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+        textStyle: const TextStyle(fontSize: 18),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30.0),
+        ),
+      ),
+    ),
+
     // Icon theme
     iconTheme: const IconThemeData(
       color: Colors.amber,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:clash_of_clans_clan_helper/infrastructure/screen_size_service.dart';
+import 'package:clash_of_clans_clan_helper/infrastructure/services/screen_size_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -72,15 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: _onSearch,
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: Colors.deepOrangeAccent,
-                        padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                        textStyle: const TextStyle(fontSize: 18),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30.0),
-                        ),
-                      ),
                       child: const Text('Search Clan'),
                     ),
                   ],
