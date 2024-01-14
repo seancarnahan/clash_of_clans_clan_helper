@@ -2,13 +2,15 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+import 'package:clash_of_clans_clan_helper/infrastructure/services/environment_service.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan_search_result.dart';
 import 'package:clash_of_clans_clan_helper/domain/repositories/clan_repository.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 
+// Singleton
 class ClashOfClansApi implements ClanRepository {
   final String baseUrl = 'https://api.clashofclans.com/v1';
-  final String apiToken = 'your_api_token_here'; // Secure your token
+  final String apiToken = EnvironmentService().clashOfClansApiKey;
 
   @override
   Future<List<ClanSearchResult>> searchClans(String name) async {

@@ -2,8 +2,17 @@
 
 A Clash of Clans tool to help with strategy and analysis of both your own clan and others
 
+### Setup Clash of Clans Api Integration
+- Register an account with clash of clans
+- Create a Clash of Clans Api Key
+- Create an AWS secret manager instance with a secret id of "ClashOfClansApiKey"
+- Store your Clash of Clans Api Key under the key name "clash-of-clans-user-key"
+- Provision an IAM profile to have access to your secrets manager
+- "cp config/app_config_example.json app_config.json" and then replace with actual credentials from your IAM profile
+
 ## Running the application
-"cp config/app_config_example.json app_config.json" and then replace with actual credentials
+- "flutter pub get"
+- "flutter run"
 
 ## Hexagonical Architecture
 flutter_project/
