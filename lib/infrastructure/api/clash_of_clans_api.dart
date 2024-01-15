@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
 import 'package:clash_of_clans_clan_helper/infrastructure/services/environment_service.dart';
-import 'package:clash_of_clans_clan_helper/domain/entities/clan_search_result.dart';
 import 'package:clash_of_clans_clan_helper/domain/repositories/clan_repository.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 
@@ -13,13 +12,14 @@ import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 class ClashOfClansApi implements ClanRepository {
   final String baseUrl = 'https://api.clashofclans.com/v1';
   final String apiToken = EnvironmentService().clashOfClansApiKey;
+  final int searchedClansResultLimit = 10;
 
   @override
-  Future<List<ClanSearchResult>> searchClans(String name) async {
+  Future<List<Clan>> searchClans(String name) async {
     Response? response;
     try {
       response = await http.get(
-        Uri.parse('$baseUrl/clans?name=$name'),
+        Uri.parse('$baseUrl/clans?name=$name&limit=$searchedClansResultLimit'),
         headers: {
           'Authorization': 'Bearer $apiToken',
           "content-type": "application/json"
@@ -32,7 +32,7 @@ class ClashOfClansApi implements ClanRepository {
     
     if (response.statusCode == 200) {
       List<dynamic> clansJson = json.decode(response.body)['items'];
-      return clansJson.map((clanJson) => ClanSearchResult.fromJson(clanJson)).toList();
+      return clansJson.map((clanJson) => Clan.fromJson(clanJson)).toList();
     } else {
       throw Exception('Failed to search clans');
     }

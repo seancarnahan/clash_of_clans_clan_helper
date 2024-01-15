@@ -5,8 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:clash_of_clans_clan_helper/presentation/screens/home/widgets/clan_search_result_list_tile.dart';
 import 'package:clash_of_clans_clan_helper/application/services/clan_service.dart';
 import 'package:clash_of_clans_clan_helper/infrastructure/services/screen_size_service.dart';
-import 'package:clash_of_clans_clan_helper/domain/entities/clan_search_result.dart';
-
+import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -17,7 +16,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late ClanService clanService;
   final TextEditingController _clanNameController = TextEditingController();
-  List<ClanSearchResult> clanSearchResults = [];
+  List<Clan> clanSearchResults = [];
   bool isError = false;
   String errorToastMsg = '';
   bool isProcessing = false;
@@ -39,11 +38,12 @@ class _HomeScreenState extends State<HomeScreen> {
           errorToastMsg = 'Search query came back with no results';
           isProcessing = false;
         });
-        // Show error toast
       } else {
-        isError = true;
-        errorToastMsg = '';
-        isProcessing = false;
+        setState(() {
+          isError = false;
+          errorToastMsg = '';
+          isProcessing = false;
+        });
       }
     } catch (e) {
       setState(() {
@@ -51,7 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
         errorToastMsg = 'There was an issue trying to fetch from Clash of Clans Api';
         isProcessing = false;
       });
-      // Show error toast
     }
   }
 
@@ -112,18 +111,25 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     const SizedBox(height: 20),
                     ElevatedButton(
-                      onPressed: _onSearch,
-                      child: const Text('Search Clan'),
+                      onPressed: isProcessing ? null : _onSearch,
+                      style: isProcessing ? ElevatedButton.styleFrom(
+                        backgroundColor: Colors.grey,
+                      ) : null,
+                      child: isProcessing 
+                        ? const CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                          )
+                        : const Text('Search Clan'),
                     ),
-                     if (clanSearchResults.isNotEmpty)
-                      ListView.builder(
-                        physics: const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: clanSearchResults.length,
-                        itemBuilder: (context, index) {
-                          return ClanSearchResultListTile(clanSearchResult: clanSearchResults[index]);
-                        }
-                      )
+                    if (clanSearchResults.isNotEmpty)
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: clanSearchResults.length,
+                          itemBuilder: (context, index) {
+                            return ClanSearchResultListTile(clan: clanSearchResults[index]);
+                          },
+                        ),
+                      ),
                   ]
                 ),
               ),

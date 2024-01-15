@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:clash_of_clans_clan_helper/presentation/screens/clan_dashboard/clan_dashboard_screen.dart';
-import 'package:clash_of_clans_clan_helper/domain/entities/clan_search_result.dart';
+import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 
 class ClanSearchResultListTile extends StatelessWidget {
-  final ClanSearchResult clanSearchResult;
+  final Clan clan;
 
-  const ClanSearchResultListTile({Key? key, required this.clanSearchResult}) : super(key: key);
+  const ClanSearchResultListTile({Key? key, required this.clan}) : super(key: key);
 
   void _onClanSelect(String? tag, BuildContext context) {
     if (tag != null) {
@@ -19,6 +19,6 @@ class ClanSearchResultListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(clanSearchResult.name);
+    return Text(clan.name);
   }
 }

@@ -1,5 +1,4 @@
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
-import 'package:clash_of_clans_clan_helper/domain/entities/clan_search_result.dart';
 import 'package:clash_of_clans_clan_helper/domain/repositories/clan_repository.dart';
 
 class ClanService {
@@ -7,7 +6,7 @@ class ClanService {
 
   ClanService(this.clanRepository);
 
-  Future<List<ClanSearchResult>> searchClans(String name) async {
+  Future<List<Clan>> searchClans(String name) async {
     return await clanRepository.searchClans(name);
   }
 
