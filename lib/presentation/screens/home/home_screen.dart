@@ -36,9 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       String clanName = _clanNameController.text;
-      print('here 0');
       clanSearchResults = await clanService.searchClans(clanName);
-      print('here 5');
 
       if (clanSearchResults.isEmpty) {
         setState(() {
@@ -99,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                     TextField(
                       controller: _clanNameController,
                       decoration: InputDecoration(
@@ -136,6 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         );
                       }
                     ),
+                    const SizedBox(height: 20),
                     if (clanSearchResults.isNotEmpty)
                       Expanded(
                         child: ListView.builder(
