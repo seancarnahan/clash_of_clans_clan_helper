@@ -24,17 +24,18 @@ class Clan {
   final int warLosses;
   final WarLeague warLeague;
   final int clanPoints;
-  final Language chatLanguage;
   final List<Label> labels;
   final String name;
-  final Location location;
   final String type;
   final int members;
   final String description;
-  final ClanCapital clanCapital;
   final BadgeUrls badgeUrls;
   final List<Member> memberList;
   final CapitalLeague capitalLeague;
+  final ClanCapital? clanCapital;
+  final Location? location;
+  final Language? chatLanguage;
+  
 
   Clan({
     required this.tag,
@@ -53,48 +54,48 @@ class Clan {
     required this.warLosses,
     required this.warLeague,
     required this.clanPoints,
-    required this.chatLanguage,
     required this.labels,
     required this.name,
-    required this.location,
     required this.type,
     required this.members,
     required this.description,
-    required this.clanCapital,
     required this.badgeUrls,
     required this.memberList,
     required this.capitalLeague,
+    this.clanCapital,
+    this.location,
+    this.chatLanguage,
   });
 
-factory Clan.fromJson(Map<String, dynamic> json) {
-  return Clan(
-    tag: json['tag'],
-    clanBuilderBasePoints: json['clanBuilderBasePoints'],
-    clanCapitalPoints: json['clanCapitalPoints'],
-    requiredTrophies: json['requiredTrophies'],
-    requiredBuilderBaseTrophies: json['requiredBuilderBaseTrophies'],
-    requiredTownhallLevel: json['requiredTownhallLevel'],
-    isFamilyFriendly: json['isFamilyFriendly'],
-    isWarLogPublic: json['isWarLogPublic'],
-    warFrequency: json['warFrequency'],
-    clanLevel: json['clanLevel'],
-    warWinStreak: json['warWinStreak'],
-    warWins: json['warWins'],
-    warTies: json['warTies'],
-    warLosses: json['warLosses'],
-    warLeague: json['warLeague'],
-    clanPoints: json['clanPoints'],
-    chatLanguage: Language.fromJson(json['Language']),
-    labels: List<Label>.from(json['labels'].map((x) => Label.fromJson(x))),
-    name: json['name'],
-    location: Location.fromJson(json['location']),
-    type: json['type'],
-    members: json['members'],
-    description: json['description'],
-    clanCapital: ClanCapital.fromJson(json['clanCapital']),
-    badgeUrls: BadgeUrls.fromJson(json['badgeUrls']),
-    memberList: List<Member>.from(json['memberList'].map((x) => Member.fromJson(x))),
-    capitalLeague: CapitalLeague.fromJson(json['capitalLeague']),
+  factory Clan.fromJson(Map<String, dynamic> json) {
+    return Clan(
+      tag: json['tag'],
+      clanBuilderBasePoints: json['clanBuilderBasePoints'],
+      clanCapitalPoints: json['clanCapitalPoints'],
+      requiredTrophies: json['requiredTrophies'],
+      requiredBuilderBaseTrophies: json['requiredBuilderBaseTrophies'],
+      requiredTownhallLevel: json['requiredTownhallLevel'],
+      isFamilyFriendly: json['isFamilyFriendly'],
+      isWarLogPublic: json['isWarLogPublic'],
+      warFrequency: json['warFrequency'],
+      clanLevel: json['clanLevel'],
+      warWinStreak: json['warWinStreak'] ?? 0,
+      warWins: json['warWins'] ?? 0,
+      warTies: json['warTies'] ?? 0,
+      warLosses: json['warLosses'] ?? 0,
+      warLeague: WarLeague.fromJson(json['warLeague']),
+      clanPoints: json['clanPoints'] ?? 0,
+      labels: List<Label>.from(json['labels'].map((x) => Label.fromJson(x))),
+      name: json['name'],
+      type: json['type'],
+      members: json['members'],
+      description: json['description'] ?? '',
+      clanCapital: json.containsKey('clanCapital') ? ClanCapital.fromJson(json['clanCapital']) : null,
+      badgeUrls: BadgeUrls.fromJson(json['badgeUrls']),
+      memberList: json.containsKey('memberList') ? List<Member>.from(json['memberList'].map((x) => Member.fromJson(x))) : [],
+      capitalLeague: CapitalLeague.fromJson(json['capitalLeague']),
+      location: json.containsKey('location') ? Location.fromJson(json['location']) : null,
+      chatLanguage: json.containsKey('chatLanguage') ? Language.fromJson(json['chatLanguage']) : null,
     );
   }
 }

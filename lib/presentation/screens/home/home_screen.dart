@@ -30,7 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
     try {
       String clanName = _clanNameController.text;
+      print('here 0');
       clanSearchResults = await clanService.searchClans(clanName);
+      print('here 5');
 
       if (clanSearchResults.isEmpty) {
         setState(() {
@@ -104,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderSide: BorderSide.none,
                         ),
                         prefixIcon: Icon(Icons.search, color: isError ? Colors.red : Colors.grey[400]),
-                        errorText: isError ? 'Clan not found or error occurred' : null,
+                        errorText: isError ? errorToastMsg : null,
 
                       ),
                       style: const TextStyle(color: Colors.white),

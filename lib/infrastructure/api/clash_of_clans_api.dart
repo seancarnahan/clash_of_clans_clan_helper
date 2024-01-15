@@ -12,7 +12,7 @@ import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 class ClashOfClansApi implements ClanRepository {
   final String baseUrl = 'https://api.clashofclans.com/v1';
   final String apiToken = EnvironmentService().clashOfClansApiKey;
-  final int searchedClansResultLimit = 10;
+  final int searchedClansResultLimit = 100;
 
   @override
   Future<List<Clan>> searchClans(String name) async {
@@ -31,9 +31,16 @@ class ClashOfClansApi implements ClanRepository {
     }
     
     if (response.statusCode == 200) {
-      List<dynamic> clansJson = json.decode(response.body)['items'];
-      return clansJson.map((clanJson) => Clan.fromJson(clanJson)).toList();
+      try {
+        List<dynamic> clansJson = json.decode(response.body)['items'];
+        return clansJson.map((clanJson) => Clan.fromJson(clanJson)).toList();
+      } catch (error) {
+        print(error);
+        throw Exception('Unable to parse searched clans result + $error');
+      }
     } else {
+      print(response.body);
+      print(response.statusCode);
       throw Exception('Failed to search clans');
     }
   }
