@@ -21,6 +21,12 @@ class _HomeScreenState extends State<HomeScreen> {
   String errorToastMsg = '';
   bool isProcessing = false;
 
+  @override
+  void dispose() {
+    _clanNameController.dispose();
+    super.dispose();
+  }
+
   void _onSearch() async {
     setState(() {
       isError = false;
@@ -97,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     TextField(
                       controller: _clanNameController,
                       decoration: InputDecoration(
-                        hintText: 'Enter Clan Name',
+                        hintText: 'Enter Clan Name (minimum 3 characters)',
                         hintStyle: TextStyle(color: isError ? Colors.red : Colors.grey),
                         filled: true,
                         fillColor: Colors.black45.withOpacity(0.5),
@@ -107,21 +113,28 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         prefixIcon: Icon(Icons.search, color: isError ? Colors.red : Colors.grey[400]),
                         errorText: isError ? errorToastMsg : null,
-
                       ),
                       style: const TextStyle(color: Colors.white),
                     ),
                     const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: isProcessing ? null : _onSearch,
-                      style: isProcessing ? ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey,
-                      ) : null,
-                      child: isProcessing 
-                        ? const CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                          )
-                        : const Text('Search Clan'),
+                    ValueListenableBuilder(
+                      valueListenable: _clanNameController,
+                      builder: (context, value, child) {
+                        bool isValidSearch = _clanNameController.text.length >= 3;
+                        bool isSearchBtnDisabled = !isValidSearch || isProcessing;
+
+                        return ElevatedButton(
+                          onPressed: isSearchBtnDisabled ? null : _onSearch,
+                          style: isSearchBtnDisabled ? ElevatedButton.styleFrom(
+                            backgroundColor: Colors.grey,
+                          ) : null,
+                          child: isProcessing
+                            ? const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
+                            : Text('Search Clan', style: isValidSearch ? null : const TextStyle(color: Colors.grey)),
+                        );
+                      }
                     ),
                     if (clanSearchResults.isNotEmpty)
                       Expanded(

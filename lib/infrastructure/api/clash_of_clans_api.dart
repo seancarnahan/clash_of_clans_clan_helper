@@ -12,7 +12,7 @@ import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 class ClashOfClansApi implements ClanRepository {
   final String baseUrl = 'https://api.clashofclans.com/v1';
   final String apiToken = EnvironmentService().clashOfClansApiKey;
-  final int searchedClansResultLimit = 100;
+  final int searchedClansResultLimit = 10;
 
   @override
   Future<List<Clan>> searchClans(String name) async {
