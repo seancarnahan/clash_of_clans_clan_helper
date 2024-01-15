@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+
+import 'package:provider/provider.dart';
+
+import 'package:clash_of_clans_clan_helper/presentation/screens/home/widgets/clan_search_result_list_tile.dart';
+import 'package:clash_of_clans_clan_helper/application/services/clan_service.dart';
 import 'package:clash_of_clans_clan_helper/infrastructure/services/screen_size_service.dart';
+import 'package:clash_of_clans_clan_helper/domain/entities/clan_search_result.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,17 +15,50 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late ClanService clanService;
   final TextEditingController _clanNameController = TextEditingController();
+  List<ClanSearchResult> clanSearchResults = [];
+  bool isError = false;
+  String errorToastMsg = '';
+  bool isProcessing = false;
 
-  void _onSearch() {
-    String clanName = _clanNameController.text;
-    // Logic to search for the clan
-    // If clan is found, navigate to ClanDashboard
-    // If not found, show error toast
+  void _onSearch() async {
+    setState(() {
+      isError = false;
+      clanSearchResults = [];
+      isProcessing = true;
+    });
+
+    try {
+      String clanName = _clanNameController.text;
+      clanSearchResults = await clanService.searchClans(clanName);
+
+      if (clanSearchResults.isEmpty) {
+        setState(() {
+          isError = true;
+          errorToastMsg = 'Search query came back with no results';
+          isProcessing = false;
+        });
+        // Show error toast
+      } else {
+        isError = true;
+        errorToastMsg = '';
+        isProcessing = false;
+      }
+    } catch (e) {
+      setState(() {
+        isError = true;
+        errorToastMsg = 'There was an issue trying to fetch from Clash of Clans Api';
+        isProcessing = false;
+      });
+      // Show error toast
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    clanService = Provider.of<ClanService>(context, listen: false);
+
     const String clashOfClansLogoPath = 'assets/clash-of-clans-logo.png';
     bool isMobileOrTablet = ScreenSizeService.isMobileOrTablet(context);
     double imageWidthMultiplier = isMobileOrTablet ? 0.75 : 0.5;
@@ -58,14 +97,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       controller: _clanNameController,
                       decoration: InputDecoration(
                         hintText: 'Enter Clan Name',
-                        hintStyle: const TextStyle(color: Colors.grey),
+                        hintStyle: TextStyle(color: isError ? Colors.red : Colors.grey),
                         filled: true,
                         fillColor: Colors.black45.withOpacity(0.5),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
                           borderSide: BorderSide.none,
                         ),
-                        prefixIcon: Icon(Icons.search, color: Colors.grey[400]),
+                        prefixIcon: Icon(Icons.search, color: isError ? Colors.red : Colors.grey[400]),
+                        errorText: isError ? 'Clan not found or error occurred' : null,
+
                       ),
                       style: const TextStyle(color: Colors.white),
                     ),
@@ -74,7 +115,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       onPressed: _onSearch,
                       child: const Text('Search Clan'),
                     ),
-                  ],
+                     if (clanSearchResults.isNotEmpty)
+                      ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: clanSearchResults.length,
+                        itemBuilder: (context, index) {
+                          return ClanSearchResultListTile(clanSearchResult: clanSearchResults[index]);
+                        }
+                      )
+                  ]
                 ),
               ),
             ]

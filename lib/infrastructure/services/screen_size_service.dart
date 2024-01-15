@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:clash_of_clans_clan_helper/constants/AppConstants.dart';
+import 'package:clash_of_clans_clan_helper/constants/app_contants.dart';
 
 class ScreenSizeService {
   static final ScreenSizeService _screenSizeService = ScreenSizeService._internal();

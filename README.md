@@ -14,6 +14,10 @@ A Clash of Clans tool to help with strategy and analysis of both your own clan a
 - "flutter pub get"
 - "flutter run"
 
+## CORS issues:
+- follow steps from https://pub.dev/packages/flutter_cors and update PATH obj
+- fluttercors --disable to locally disable CORS because we are hitting external API locally
+
 ## Hexagonical Architecture
 flutter_project/
 ├── lib/
