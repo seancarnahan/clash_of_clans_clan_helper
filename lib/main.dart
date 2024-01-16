@@ -41,9 +41,13 @@ class MyApp extends StatelessWidget {
           if (snapshots.connectionState == ConnectionState.done) {
             return const HomeScreen();
           } else if (snapshots.hasError) {
-            return const Text('Error');
+            return const Text('Error loading env vars');
           } else {
-            return const Text('LOADING...');
+            return const Scaffold(
+              body: Center(
+                child: Text('LOADING...'),
+              ),
+            );
           }
         }
       ),

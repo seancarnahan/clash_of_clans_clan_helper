@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:clash_of_clans_clan_helper/presentation/screens/clan_dashboard/clan_dashboard_screen.dart';
-import 'package:clash_of_clans_clan_helper/constants/app_contants.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 
 

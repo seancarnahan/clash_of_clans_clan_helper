@@ -7,6 +7,10 @@ class ClanDashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text('Clan Dashboard Screen');
+    return const Scaffold(
+      body: Center(
+        child: Text('ClanDashboardScreen'),
+      ),
+    );
   }
 }
