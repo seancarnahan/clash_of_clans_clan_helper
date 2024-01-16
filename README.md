@@ -21,6 +21,7 @@ Dart 3.2.4 • DevTools 2.28.5
 
 ## CORS issues:
 - follow steps from https://pub.dev/packages/flutter_cors and update PATH obj
+- active fluttercors globally: "dart pub global activate flutter_cors"
 - fluttercors --disable to locally disable CORS because we are hitting external API locally
 
 ## Hexagonical Architecture

@@ -11,6 +11,7 @@ import 'package:clash_of_clans_clan_helper/infrastructure/api/clash_of_clans_api
 
 void main() {
   runApp(
+    // Dependency Injection for these Services
     MultiProvider(
       providers: [
         // Clan Service
