@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:clash_of_clans_clan_helper/domain/entities/badge_urls.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/capital_league.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan_capital.dart';
@@ -97,5 +99,38 @@ class Clan {
       location: json.containsKey('location') ? Location.fromJson(json['location']) : null,
       chatLanguage: json.containsKey('chatLanguage') ? Language.fromJson(json['chatLanguage']) : null,
     );
+  }
+
+  static String toJson(Clan clan) {
+    Map<String, dynamic> clanMap = {
+      'tag': clan.tag,
+      'clanBuilderBasePoints': clan.clanBuilderBasePoints,
+      'clanCapitalPoints': clan.clanCapitalPoints,
+      'requiredTrophies': clan.requiredTrophies,
+      'requiredBuilderBaseTrophies': clan.requiredBuilderBaseTrophies,
+      'requiredTownhallLevel': clan.requiredTownhallLevel,
+      'isFamilyFriendly': clan.isFamilyFriendly,
+      'isWarLogPublic': clan.isWarLogPublic,
+      'warFrequency': clan.warFrequency,
+      'clanLevel': clan.clanLevel,
+      'warWinStreak': clan.warWinStreak,
+      'warWins': clan.warWins,
+      'warTies': clan.warTies,
+      'warLosses': clan.warLosses,
+      'warLeague': WarLeague.toJson(clan.warLeague),
+      'clanPoints': clan.clanPoints,
+      'labels': clan.labels.map((label) => Label.toJson(label)).toList(),
+      'name': clan.name,
+      'type': clan.type,
+      'members': clan.members,
+      'description': clan.description,
+      'clanCapital': clan.clanCapital,
+      'badgeUrls': BadgeUrls.toJson(clan.badgeUrls),
+      'memberList': clan.memberList.map((member) => Member.toJson(member)).toList(),
+      'capitalLeague': CapitalLeague.toJson(clan.capitalLeague),
+      'location': Location.toJson(clan.location),
+      'chatLanguage': Language.toJson(clan.chatLanguage),
+    };
+    return jsonEncode(clanMap);
   }
 }

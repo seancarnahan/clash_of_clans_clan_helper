@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Language {
   final String name;
   final int id;
@@ -15,5 +17,14 @@ class Language {
       id: json['id'],
       languageCode: json['languageCode'],
     );
+  }
+
+  static String toJson(Language? language) {
+    Map<String, dynamic> languageMap = {
+      'name': language?.name,
+      'id': language?.id,
+      'languageCode': language?.languageCode,
+    };
+    return jsonEncode(languageMap);
   }
 }

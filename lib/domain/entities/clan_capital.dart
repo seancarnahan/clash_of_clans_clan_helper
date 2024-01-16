@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:clash_of_clans_clan_helper/domain/entities/district.dart';
 
 class ClanCapital {
@@ -16,5 +18,13 @@ class ClanCapital {
           ? List<District>.from(json['districts'].map((x) => District.fromJson(x)))
           : [],
     );
+  }
+
+  static String toJson(ClanCapital clanCapital) {
+    Map<String, dynamic> capitalLeagueMap = {
+      'capitalHallLevel': clanCapital.capitalHallLevel,
+      'districts': clanCapital.districts.map((district) => District.toJson(district)).toList(),
+    };
+    return jsonEncode(capitalLeagueMap);
   }
 }

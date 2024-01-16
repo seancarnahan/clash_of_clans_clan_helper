@@ -9,13 +9,11 @@ class ClanSearchResultListTile extends StatelessWidget {
 
   const ClanSearchResultListTile({Key? key, required this.clan}) : super(key: key);
 
-  void _onClanSelect(String? tag, BuildContext context) {
-    if (tag != null) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => ClanDashboardScreen(clanTag: tag)),
-      );
-    }
+  void _onClanSelect(Clan tag, BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => ClanDashboardScreen(clan: clan)),
+    );
   }
 
   @override
@@ -23,7 +21,7 @@ class ClanSearchResultListTile extends StatelessWidget {
     return Card(
       color: Colors.brown.shade200,
       child: ListTile(
-        onTap: () => _onClanSelect(clan.tag, context),
+        onTap: () => _onClanSelect(clan, context),
         title: Text(
           clan.name,
           style: const TextStyle(color: Colors.white),

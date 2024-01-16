@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class District {
   final String name;
   final int id;
@@ -15,5 +17,14 @@ class District {
       id: json['id'],
       districtHallLevel: json['districtHallLevel'],
     );
+  }
+
+  static String toJson(District district) {
+    Map<String, dynamic> districtMap = {
+      'name': district.name,
+      'id': district.id,
+      'districtHallLevel': district.districtHallLevel,
+    };
+    return jsonEncode(districtMap);
   }
 }

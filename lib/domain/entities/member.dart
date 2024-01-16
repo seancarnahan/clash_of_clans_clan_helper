@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:clash_of_clans_clan_helper/domain/entities/league.dart';
 
 class Member {
@@ -42,5 +44,22 @@ class Member {
       donationsReceived: json['donationsReceived'],
       trophies: json['trophies'],
     );
+  }
+
+  static String toJson(Member member) {
+    Map<String, dynamic> memberMap = {
+      'league': League.toJson(member.league),
+      'tag': member.tag,
+      'name': member.name,
+      'role': member.role,
+      'townHallLevel': member.townHallLevel,
+      'expLevel': member.expLevel,
+      'clanRank': member.clanRank,
+      'previousClanRank': member.previousClanRank,
+      'donations': member.donations,
+      'donationsReceived': member.donationsReceived,
+      'trophies': member.trophies,
+    };
+    return jsonEncode(memberMap);
   }
 }

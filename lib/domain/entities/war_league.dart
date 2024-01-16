@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class WarLeague {
   final String name;
   final int id;
@@ -9,5 +11,13 @@ class WarLeague {
       name: json['name'],
       id: json['id'],
     );
+  }
+
+  static String toJson(WarLeague warLeague) {
+    Map<String, dynamic> warLeagueMap = {
+      'name': warLeague.name,
+      'id': warLeague.id,
+    };
+    return jsonEncode(warLeagueMap);
   }
 }
