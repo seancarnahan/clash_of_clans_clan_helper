@@ -2,6 +2,11 @@
 
 A Clash of Clans tool to help with strategy and analysis of both your own clan and others
 
+# Environment
+Flutter 3.16.7 • channel stable • https://github.com/flutter/flutter.git
+Dart 3.2.4 • DevTools 2.28.5
+
+
 ### Setup Clash of Clans Api Integration
 - Register an account with clash of clans
 - Create a Clash of Clans Api Key
