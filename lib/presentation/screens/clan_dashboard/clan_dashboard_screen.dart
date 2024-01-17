@@ -18,7 +18,7 @@ class ClanDashboardScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // ClanDashboardHeader(),
+            ClanDashboardHeader(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

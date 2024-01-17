@@ -1,26 +1,36 @@
 import 'package:flutter/material.dart';
 
+import 'package:clash_of_clans_clan_helper/constants/app_contants.dart';
+
 class ClanDashboardHeader extends StatelessWidget {
   const ClanDashboardHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Stack(
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    bool isMobile = screenWidth < AppConstants.mobileOrTabletBreakpoint;
+    double imageHeight = screenHeight * 0.3;
+    double cardWidthScalar = isMobile ? 0.4 : 0.32;
+
+
+    return Stack(
         children: <Widget>[
-          FractionallySizedBox(
-            heightFactor: 0.2, // 1/5 of the screen height
-            child: Image.asset(
-              'assets/background.jpg', // Replace with your background image
-              fit: BoxFit.cover,
+          SizedBox(
+            width: screenWidth,
+            height: imageHeight,
+            child: const Image(
+              image: AssetImage('assets/clash-of-clans-header-background.png'),
+              fit: BoxFit.fitWidth,
             ),
           ),
           Positioned(
-            left: 0,
-            top: MediaQuery.of(context).size.height * 0.1, // Center of the background image
+            left: 25,
+            top: imageHeight * 0.1,
             child: Card(
               child: Container(
-                width: 200, // Set your desired width
-                height: 100, // Set your desired height
+                width: screenWidth * cardWidthScalar,
+                height: imageHeight * 0.4,
                 padding: EdgeInsets.all(16),
                 child: Text('Your Content Here'),
               ),
