@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
+import 'package:clash_of_clans_clan_helper/constants/app_contants.dart';
 
 import 'widgets/clan_analysis_tool.dart';
 import 'widgets/clan_dashboard_header.dart';
@@ -14,21 +15,32 @@ class ClanDashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    bool isMobile = screenWidth < AppConstants.mobileOrTabletBreakpoint;
+    double cardHeight = (screenHeight * 0.3) * 0.5;
+
+    return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            ClanDashboardHeader(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ClanOverviewCard(),
-                ClanWarHistoryCard()
-              ],
+            const ClanDashboardHeader(),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: isMobile ? 12 : 25),
+              child: Transform.translate(
+                offset: Offset(0, (cardHeight / 2) * -1),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ClanOverviewCard(clan: clan),
+                    ClanWarHistoryCard(clan: clan)
+                  ],
+                ),
+              )
             ),
-            Expanded(
-              child: ClanAnalysisTool(),
-            ),
+            // Expanded(
+            //   child: ClanAnalysisTool(),
+            // ),
           ],
         )
       )

@@ -57,7 +57,7 @@ ThemeData buildClashOfClansTheme() {
       color: Colors.white,
       elevation: 5,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
+        borderRadius: BorderRadius.circular(20.0),
       ),
       shadowColor: Colors.blueGrey.withOpacity(0.5)
     ),

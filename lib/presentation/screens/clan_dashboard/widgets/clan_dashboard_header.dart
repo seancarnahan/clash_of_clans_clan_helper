@@ -11,8 +11,7 @@ class ClanDashboardHeader extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     bool isMobile = screenWidth < AppConstants.mobileOrTabletBreakpoint;
     double imageHeight = screenHeight * 0.3;
-    double cardWidthScalar = isMobile ? 0.4 : 0.32;
-
+    double cardWidthScalar = isMobile ? 0.25 : 0.20;
 
     return Stack(
         children: <Widget>[
@@ -27,44 +26,34 @@ class ClanDashboardHeader extends StatelessWidget {
           Positioned(
             left: 25,
             top: imageHeight * 0.1,
-            child: MouseRegion(
-              cursor: SystemMouseCursors.click,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Card(
-                  child: Container(
-                    width: screenWidth * cardWidthScalar,
-                    height: imageHeight * 0.4,
-                    padding: const EdgeInsets.all(32),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              border: Border.all(color: Colors.black, width: 1.0)
-                            ),
-                            child: const Icon(
-                              Icons.replay,
-                              color: Colors.black,
-                              size: 24,
-                            ),
-                          ),
-                        ),
-                        const Align(
-                          alignment: Alignment.center,
-                          child: Text('Home', style: TextStyle(fontSize: 28, color: Colors.black)),
-                        )
-                      ],
-                    )
-                  ),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
-            )
+              onPressed: () => Navigator.pop(context),
+              child: Row(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: Colors.black, width: 2.0)
+                    ),
+                    child: const Icon(
+                      Icons.replay,
+                      color: Colors.black,
+                      size: 18,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  const Text('Home', style: TextStyle(fontSize: 18, color: Colors.black, fontFamily: 'CustomClashOfClans')),
+                ],
+              )
+            ),
           ),
         ],
       );
