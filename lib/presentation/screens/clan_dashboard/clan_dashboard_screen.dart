@@ -19,6 +19,7 @@ class ClanDashboardScreen extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     bool isMobile = screenWidth < AppConstants.mobileOrTabletBreakpoint;
     double cardHeight = (screenHeight * 0.3) * 0.5;
+    double horizontalScreenPadding = isMobile ? 12 : 25;
 
     return Scaffold(
       body: SafeArea(
@@ -26,7 +27,7 @@ class ClanDashboardScreen extends StatelessWidget {
           children: [
             const ClanDashboardHeader(),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: isMobile ? 12 : 25),
+              padding: EdgeInsets.symmetric(horizontal: horizontalScreenPadding),
               child: Transform.translate(
                 offset: Offset(0, (cardHeight / 2) * -1),
                 child: Row(
@@ -38,9 +39,12 @@ class ClanDashboardScreen extends StatelessWidget {
                 ),
               )
             ),
-            // Expanded(
-            //   child: ClanAnalysisTool(),
-            // ),
+            Expanded(
+              child: Padding(
+              padding: EdgeInsets.only(left: horizontalScreenPadding),
+                child: ClanAnalysisTool(clan: clan),
+              )
+            ),
           ],
         )
       )

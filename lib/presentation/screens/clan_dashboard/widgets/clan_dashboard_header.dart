@@ -44,13 +44,16 @@ class ClanDashboardHeader extends StatelessWidget {
                       border: Border.all(color: Colors.black, width: 2.0)
                     ),
                     child: const Icon(
-                      Icons.replay,
+                      Icons.house,
                       color: Colors.black,
                       size: 18,
                     ),
                   ),
                   const SizedBox(width: 12),
-                  const Text('Home', style: TextStyle(fontSize: 18, color: Colors.black, fontFamily: 'CustomClashOfClans')),
+                  Visibility(
+                    visible: !isMobile,
+                    child: const Text('Home', style: TextStyle(fontSize: 18, color: Colors.black, fontFamily: 'CustomClashOfClans')),
+                  )
                 ],
               )
             ),
