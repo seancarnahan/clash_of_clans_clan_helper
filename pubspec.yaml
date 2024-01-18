@@ -22,3 +22,7 @@ flutter:
   assets:
     - config/
     - assets/
+  fonts:
+    - family: CustomClashOfClans
+      fonts:
+        - asset: assets/Supercell-Magic-Regular.ttf

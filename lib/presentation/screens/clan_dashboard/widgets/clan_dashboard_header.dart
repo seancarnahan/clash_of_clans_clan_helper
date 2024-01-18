@@ -37,26 +37,27 @@ class ClanDashboardHeader extends StatelessWidget {
                   child: Container(
                     width: screenWidth * cardWidthScalar,
                     height: imageHeight * 0.4,
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(32),
                     child: Stack(
                       children: [
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Container(
                             padding: const EdgeInsets.all(8),
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Colors.white
+                              border: Border.all(color: Colors.black, width: 1.0)
                             ),
                             child: const Icon(
                               Icons.replay,
+                              color: Colors.black,
                               size: 24,
                             ),
                           ),
                         ),
                         const Align(
                           alignment: Alignment.center,
-                          child: Text('Home'),
+                          child: Text('Home', style: TextStyle(fontSize: 28, color: Colors.black)),
                         )
                       ],
                     )
