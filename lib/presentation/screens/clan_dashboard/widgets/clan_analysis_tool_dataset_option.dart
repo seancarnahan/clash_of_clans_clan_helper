@@ -12,13 +12,14 @@ class ClanAnalysisToolDatasetOption extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double boxHeight = screenHeight * 0.2;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.green,
-        border: Border.all(color: Colors.black, width: 1),
+    return Card(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 1),
+        ),
+        height: boxHeight,
+        child: const Text('foo'),
       ),
-      height: boxHeight,
-      child: const Text('foo'),
     );
   }
 }

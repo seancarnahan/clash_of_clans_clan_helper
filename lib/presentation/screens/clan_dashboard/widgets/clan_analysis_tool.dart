@@ -6,6 +6,7 @@ import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 import 'package:clash_of_clans_clan_helper/presentation/providers/clan_analysis_tool_provider.dart';
 
 import 'clan_analysis_tool_dataset_option.dart';
+import 'clan_analysis_tool_response.dart';
 
 class ClanAnalysisTool extends StatelessWidget {
   final Clan clan;
@@ -38,11 +39,10 @@ class ClanAnalysisTool extends StatelessWidget {
                 );
               }
 
-              return  Row(children: datasetOptions);
+              return Row(children: datasetOptions);
             }
-          )
-          
-          // TODO implement ClanAnalysisToolResponse()
+          ),
+          const ClanAnalysisToolResponse()
         ],
       )
     );
