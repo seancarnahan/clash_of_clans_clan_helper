@@ -12,6 +12,12 @@ class ClanAnalysisToolProvider extends ChangeNotifier {
   AnalyzableDatasetName? selectedDataset;
   String llmResponse = '';
 
+
+  void selectDataset(AnalyzableDatasetName dataset) {
+    selectedDataset = dataset;
+    notifyListeners();
+  }
+
   static List<DatasetAnalyzable> getDatasetOptions(Clan clan) {
     return [
       ClanDatasetAnalyzable(clan),
