@@ -32,9 +32,9 @@ class ClanAnalysisToolDatasetOption extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(dataset.title),
+                    Text(dataset.title, style: const TextStyle(color: Colors.black)),
                     const SizedBox(height: 16),
-                    Icon(dataset.icon),
+                    Icon(dataset.icon, color: Colors.blueGrey, size: 48,),
                   ],
                 ),
               ),

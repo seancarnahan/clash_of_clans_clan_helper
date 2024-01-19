@@ -31,7 +31,7 @@ class ClanDashboardScreen extends StatelessWidget {
               children: [
                 const ClanDashboardHeader(),
                 Positioned(
-                  top: imageHeight - (cardHeight / 2),
+                  top: imageHeight - (cardHeight * 0.75),
                   left: horizontalScreenPadding,
                   right: horizontalScreenPadding,
                   child: Row(
@@ -47,7 +47,7 @@ class ClanDashboardScreen extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.only(
-                  top: cardHeight / 2 + horizontalScreenPadding,
+                  top: (cardHeight * 0.25) + horizontalScreenPadding,
                   left: horizontalScreenPadding,
                 ),
                 child: ClanAnalysisTool(clan: clan),
