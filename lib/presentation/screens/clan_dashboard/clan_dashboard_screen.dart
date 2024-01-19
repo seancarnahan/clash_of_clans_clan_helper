@@ -20,34 +20,43 @@ class ClanDashboardScreen extends StatelessWidget {
     bool isMobile = screenWidth < AppConstants.mobileOrTabletBreakpoint;
     double cardHeight = (screenHeight * 0.3) * 0.5;
     double horizontalScreenPadding = isMobile ? 12 : 25;
+    double imageHeight = screenHeight * 0.3;
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: [
-            const ClanDashboardHeader(),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: horizontalScreenPadding),
-              child: Transform.translate(
-                offset: Offset(0, (cardHeight / 2) * -1),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ClanOverviewCard(clan: clan),
-                    ClanWarHistoryCard(clan: clan)
-                  ],
+            Stack(
+              clipBehavior: Clip.none,
+              children: [
+                const ClanDashboardHeader(),
+                Positioned(
+                  top: imageHeight - (cardHeight / 2),
+                  left: horizontalScreenPadding,
+                  right: horizontalScreenPadding,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ClanOverviewCard(clan: clan),
+                      ClanWarHistoryCard(clan: clan),
+                    ],
+                  ),
                 ),
-              )
+              ],
             ),
             Expanded(
               child: Padding(
-              padding: EdgeInsets.only(left: horizontalScreenPadding),
+                padding: EdgeInsets.only(
+                  top: cardHeight / 2 + horizontalScreenPadding,
+                  left: horizontalScreenPadding,
+                ),
                 child: ClanAnalysisTool(clan: clan),
-              )
+              ),
             ),
           ],
-        )
-      )
+        ),
+      ),
     );
+
   }
 }

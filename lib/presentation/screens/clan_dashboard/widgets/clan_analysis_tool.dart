@@ -42,7 +42,7 @@ class ClanAnalysisTool extends StatelessWidget {
               return Row(children: datasetOptions);
             }
           ),
-          const ClanAnalysisToolResponse()
+          const ClanAnalysisToolResponse(),
         ],
       )
     );
