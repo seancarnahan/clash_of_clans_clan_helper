@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:clash_of_clans_clan_helper/constants/app_contants.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 import 'package:clash_of_clans_clan_helper/presentation/providers/clan_analysis_tool_provider.dart';
+import 'package:clash_of_clans_clan_helper/presentation/models/dataset_analyzable.dart';
 
 import 'clan_analysis_tool_dataset_option.dart';
 import 'clan_analysis_tool_response.dart';
@@ -25,10 +26,10 @@ class ClanAnalysisTool extends StatelessWidget {
         children: [
           Builder(
             builder: (BuildContext context) {
-              List<ClanAnalysisToolDataset> datasets = ClanAnalysisToolDataset.values.toList();
+              List<DatasetAnalyzable> datasets = ClanAnalysisToolProvider.getDatasetOptions(clan);
               List<Widget> datasetOptions = [];
 
-              for (ClanAnalysisToolDataset dataset in datasets) {
+              for (DatasetAnalyzable dataset in datasets) {
                 datasetOptions.add(
                   Expanded(
                     child: Container(

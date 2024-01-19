@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:clash_of_clans_clan_helper/presentation/providers/clan_analysis_tool_provider.dart';
+import 'package:clash_of_clans_clan_helper/presentation/models/dataset_analyzable.dart';
 
 class ClanAnalysisToolDatasetOption extends StatelessWidget {
-  final ClanAnalysisToolDataset dataset;
+  final DatasetAnalyzable dataset;
   
   const ClanAnalysisToolDatasetOption({Key? key, required this.dataset}) : super(key: key);
 
@@ -12,14 +14,34 @@ class ClanAnalysisToolDatasetOption extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double boxHeight = screenHeight * 0.2;
 
-    return Card(
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 1),
-        ),
-        height: boxHeight,
-        child: const Text('foo'),
-      ),
+    return Consumer<ClanAnalysisToolProvider>(
+      builder: (context, clanAnalysisToolProvider, child) {
+        bool isSelected = clanAnalysisToolProvider.selectedDataset == dataset;
+        Color offsetColor = Colors.blueGrey;
+
+        return Card(
+          child: Container(
+            decoration: BoxDecoration(
+              color: isSelected ? offsetColor : null,
+              border: Border.all(color: Colors.black, width: 1),
+            ),
+            height: boxHeight,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(dataset.title),
+                    const SizedBox(height: 16),
+                    Icon(dataset.icon),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      }
     );
   }
 }
