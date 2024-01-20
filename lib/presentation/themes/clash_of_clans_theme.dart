@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ThemeData buildClashOfClansTheme() {
   return ThemeData(
     // Primary color for the app
-    primaryColor: Colors.deepOrange,
+    primaryColor: Colors.blueGrey,
 
     // Scaffold background color
     scaffoldBackgroundColor: const Color(0xFF1E1E1E),
@@ -27,7 +27,7 @@ ThemeData buildClashOfClansTheme() {
 
     // Button theme
     buttonTheme: ButtonThemeData(
-      buttonColor: Colors.deepOrange,
+      buttonColor: Colors.blueGrey,
       textTheme: ButtonTextTheme.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8.0),
@@ -38,7 +38,7 @@ ThemeData buildClashOfClansTheme() {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         foregroundColor: Colors.white,
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Colors.blueGrey,
         padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
         textStyle: const TextStyle(fontSize: 18),
         shape: RoundedRectangleBorder(
@@ -66,11 +66,11 @@ ThemeData buildClashOfClansTheme() {
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: const BorderSide(color: Colors.amber),
+        borderSide: const BorderSide(color: Colors.blueGrey),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
-        borderSide: const BorderSide(color: Colors.amber),
+        borderSide: const BorderSide(color: Colors.blueGrey),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(10.0),
@@ -80,6 +80,6 @@ ThemeData buildClashOfClansTheme() {
       hintStyle: const TextStyle(color: Colors.white70),
     ),
     
-    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.amber),
+    colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.blueGrey),
   );
 }

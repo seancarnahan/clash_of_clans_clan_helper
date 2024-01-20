@@ -147,7 +147,12 @@ class _HomeScreenState extends State<HomeScreen> {
                             ? const CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
                               )
-                            : Text('Search Clan', style: isValidSearch ? null : const TextStyle(color: Colors.grey, fontFamily: 'CustomClashOfClans')),
+                            : Text(
+                              'Search Clan',
+                               style: TextStyle(
+                                 color: isValidSearch ? Colors.white : Colors.grey,
+                                 fontFamily: 'CustomClashOfClans')
+                               ),
                         );
                       }
                     ),

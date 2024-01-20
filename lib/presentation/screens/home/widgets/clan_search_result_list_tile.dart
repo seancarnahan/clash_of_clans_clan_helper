@@ -39,7 +39,7 @@ class ClanSearchResultListTile extends StatelessWidget {
         ),
         leading: CircleAvatar(
           backgroundImage: NetworkImage(clan.badgeUrls.small),
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: Colors.blueGrey,
         ),
       ),
     );
