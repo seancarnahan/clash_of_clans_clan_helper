@@ -52,16 +52,25 @@ class ClanOverviewCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text('Clan name', style: TextStyle(color: Colors.black, fontSize: 24)),
+                    Text(
+                      clan.name,
+                      style: const TextStyle(color: Colors.black, fontSize: 24)
+                    ),
                     const SizedBox(height: 8),
                     CustomPaint(
                       size: const Size(double.infinity, 1),
                       painter: ClashOfClansLinePainter(),
                     ),
                     const SizedBox(height: 8),
-                    const Text('Members: 49', style: TextStyle(color: Colors.black54, fontSize: 16)),
+                    Text(
+                      'Members: ${clan.members}',
+                      style: const TextStyle(color: Colors.black54, fontSize: 16)
+                    ),
                     const SizedBox(height: 8),
-                    const Text('Location', style: TextStyle(color: Colors.black54, fontSize: 16)),
+                    Text(
+                      clan.location?.name ?? clan.tag,
+                      style: const TextStyle(color: Colors.black54, fontSize: 16)
+                    ),
                   ],
                 ),
               )

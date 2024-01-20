@@ -26,25 +26,36 @@ class ClanWarHistoryCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('War League', style: TextStyle(color: Colors.black, fontSize: 24)),
+              Text(
+                clan.warLeague.name,
+                style: const TextStyle(color: Colors.black, fontSize: 24)
+              ),
               const SizedBox(height: 8),
                CustomPaint(
                 size: const Size(double.infinity, 1),
                 painter: ClashOfClansLinePainter(),
               ),
               const SizedBox(height: 8),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Wins: 100', style: TextStyle(color: Colors.black54, fontSize: 16)),
+                  Text(
+                    'Wins: ${clan.warWins}',
+                    style: const TextStyle(color: Colors.black54, fontSize: 16)
+                  ),
                   Padding(
-                    padding: EdgeInsets.only(right: 16),
-                    child: Text('Ties: 100', style: TextStyle(color: Colors.black54, fontSize: 16)),
+                    padding: const EdgeInsets.only(right: 16),
+                    child: Text(
+                      'Ties: ${clan.warTies}',
+                      style: const TextStyle(color: Colors.black54, fontSize: 16)),
                   )
                 ],
               ),
               const SizedBox(height: 8),
-              const Text('Losses: 100', style: TextStyle(color: Colors.black54, fontSize: 16)),
+              Text(
+                'Losses: ${clan.warLosses}',
+                style: const TextStyle(color: Colors.black54, fontSize: 16)
+              ),
             ],
           ),
         )
