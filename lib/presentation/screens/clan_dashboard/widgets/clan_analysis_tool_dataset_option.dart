@@ -20,7 +20,6 @@ class _ClanAnalysisToolDatasetOptionState extends State<ClanAnalysisToolDatasetO
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double boxHeight = screenHeight * 0.2;
-    double boxHeightHovered = screenHeight * 0.3;
 
     return Consumer<ClanAnalysisToolProvider>(
       builder: (context, clanAnalysisToolProvider, child) {
@@ -43,7 +42,7 @@ class _ClanAnalysisToolDatasetOptionState extends State<ClanAnalysisToolDatasetO
                   border: Border.all(color: Colors.black, width: 1),
                   borderRadius: const BorderRadius.all(Radius.circular(20)),
                   boxShadow: isHovered
-                  ? [BoxShadow(color: Colors.white, blurRadius: 10, spreadRadius: 3)]
+                  ? [const BoxShadow(color: Colors.white, blurRadius: 10, spreadRadius: 3)]
                   : [],
                 ),
                 height: boxHeight,
@@ -53,9 +52,9 @@ class _ClanAnalysisToolDatasetOptionState extends State<ClanAnalysisToolDatasetO
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(widget.dataset.title, style: TextStyle(color: textColor)),
+                        Text(widget.dataset.title, style: TextStyle(color: textColor, fontSize: 20)),
                         const SizedBox(height: 16),
-                        Icon(widget.dataset.icon, color: iconColor, size: 48),
+                        Icon(widget.dataset.icon, color: iconColor, size: 60),
                       ],
                     ),
                   ),

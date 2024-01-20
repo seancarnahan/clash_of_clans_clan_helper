@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:clash_of_clans_clan_helper/constants/app_contants.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
-import 'package:flutter/rendering.dart';
+import 'package:clash_of_clans_clan_helper/presentation/widgets/clash_of_clans_line_painter.dart';
 
 class ClanWarHistoryCard extends StatelessWidget {
   final Clan clan;
@@ -19,8 +19,35 @@ class ClanWarHistoryCard extends StatelessWidget {
     return SizedBox(
       width: screenWidth * cardWidthScalar,
       height: (screenHeight * 0.3) * 0.5,
-      child: const Card(
-        child: Text('War card')
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('War League', style: TextStyle(color: Colors.black, fontSize: 24)),
+              const SizedBox(height: 8),
+               CustomPaint(
+                size: const Size(double.infinity, 1),
+                painter: ClashOfClansLinePainter(),
+              ),
+              const SizedBox(height: 8),
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Wins: 100', style: TextStyle(color: Colors.black54, fontSize: 16)),
+                  Padding(
+                    padding: EdgeInsets.only(right: 16),
+                    child: Text('Ties: 100', style: TextStyle(color: Colors.black54, fontSize: 16)),
+                  )
+                ],
+              ),
+              const SizedBox(height: 8),
+              const Text('Losses: 100', style: TextStyle(color: Colors.black54, fontSize: 16)),
+            ],
+          ),
+        )
       )
     );
   }
