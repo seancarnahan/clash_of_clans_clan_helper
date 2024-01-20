@@ -17,8 +17,8 @@ class LeagueDatasetAnalyzable extends DatasetAnalyzable {
   IconData get icon => Icons.emoji_events;
 
   @override
-  String getClashOfClansData() {
-    return '';
+  Future<String> getClashOfClansData() {
+    return Future.value("Mock league");
   }
 
   @override

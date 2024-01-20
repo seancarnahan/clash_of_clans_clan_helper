@@ -17,8 +17,8 @@ class WarDatasetAnalyzable extends DatasetAnalyzable {
   IconData get icon => Icons.security;
 
   @override
-  String getClashOfClansData() {
-    return '';
+  Future<String> getClashOfClansData() {
+    return Future.value("Mock War");
   }
 
   @override

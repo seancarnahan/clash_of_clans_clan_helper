@@ -8,6 +8,17 @@ import 'package:clash_of_clans_clan_helper/presentation/widgets/animated_typing_
 class ClanAnalysisToolResponse extends StatelessWidget {
   const ClanAnalysisToolResponse({Key? key}) : super(key: key);
 
+  String getAnalysisToolText(ClanAnalysisToolProvider clanAnalysisToolProvider) {
+
+    if (clanAnalysisToolProvider.isProcessingLlmRequest) {
+      return 'Processing ...';
+    } else if (clanAnalysisToolProvider.llmResponse.isEmpty) {
+      return '';
+    } else {
+      return clanAnalysisToolProvider.llmResponse;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -28,8 +39,11 @@ class ClanAnalysisToolResponse extends StatelessWidget {
                 width: double.infinity,
                   padding: const EdgeInsets.all(16.0),
                   child: AnimatedTypingText(
-                    text: clanAnalysisToolProvider.llmResponse,
+                    text: getAnalysisToolText(clanAnalysisToolProvider),
                     placeHolderText: 'Select a dataset for OpenAI to analyze...',
+                    color: clanAnalysisToolProvider.isProcessingLlmRequest ?
+                      Colors.grey :
+                      Colors.blueGrey,
                   ),
                 ),
             )

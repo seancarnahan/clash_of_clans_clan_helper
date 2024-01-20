@@ -23,7 +23,7 @@ class _ClanAnalysisToolDatasetOptionState extends State<ClanAnalysisToolDatasetO
 
     return Consumer<ClanAnalysisToolProvider>(
       builder: (context, clanAnalysisToolProvider, child) {
-        bool isSelected = clanAnalysisToolProvider.selectedDataset == widget.dataset.datasetName;
+        bool isSelected = clanAnalysisToolProvider.selectedDatasetName == widget.dataset.datasetName;
         Color? containerColor = isSelected ? Colors.blueGrey : null;
         Color textColor = isSelected ? Colors.white : Colors.black;
         Color iconColor = isSelected ? Colors.white : Colors.blueGrey;
@@ -33,7 +33,9 @@ class _ClanAnalysisToolDatasetOptionState extends State<ClanAnalysisToolDatasetO
           onExit: (_) => setState(() => isHovered = false),
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
-            onTap: () => clanAnalysisToolProvider.selectDataset(widget.dataset.datasetName),
+            onTap: () {
+              clanAnalysisToolProvider.selectDataset(widget.dataset);
+            },
             child: Card(
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 100),

@@ -9,13 +9,24 @@ import 'package:clash_of_clans_clan_helper/presentation/models/dataset_analyzabl
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 
 class ClanAnalysisToolProvider extends ChangeNotifier {
-  AnalyzableDatasetName? selectedDataset;
+  AnalyzableDatasetName? selectedDatasetName;
   String llmResponse = '';
+  bool isProcessingLlmRequest = false;
 
 
-  void selectDataset(AnalyzableDatasetName dataset) {
-    selectedDataset = dataset;
-    notifyListeners();
+  void selectDataset(DatasetAnalyzable dataset) async {
+    bool isNewDataset = selectedDatasetName != dataset.datasetName;
+    bool canProcessDatasetLLMRequest = isNewDataset && !isProcessingLlmRequest;
+
+    if (canProcessDatasetLLMRequest) {
+      isProcessingLlmRequest = true;
+      selectedDatasetName = dataset.datasetName;
+      notifyListeners();
+
+      llmResponse = await dataset.processDatasetLLMRequest();
+      isProcessingLlmRequest = false;
+      notifyListeners();
+    }
   }
 
   static List<DatasetAnalyzable> getDatasetOptions(Clan clan) {

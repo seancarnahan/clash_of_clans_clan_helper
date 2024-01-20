@@ -17,8 +17,8 @@ class PlayerDatasetAnalyzable extends DatasetAnalyzable {
   IconData get icon => Icons.person;
 
   @override
-  String getClashOfClansData() {
-    return '';
+  Future<String> getClashOfClansData() {
+    return Future.value("Mock Player");
   }
 
   @override

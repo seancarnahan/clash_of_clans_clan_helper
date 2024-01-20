@@ -17,8 +17,8 @@ class LocationDatasetAnalyzable extends DatasetAnalyzable {
   IconData get icon => Icons.location_on;
 
   @override
-  String getClashOfClansData() {
-    return '';
+  Future<String> getClashOfClansData() {
+    return Future.value("Mock location");
   }
 
   @override

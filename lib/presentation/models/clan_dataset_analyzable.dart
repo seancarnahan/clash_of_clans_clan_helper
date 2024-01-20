@@ -17,8 +17,8 @@ class ClanDatasetAnalyzable extends DatasetAnalyzable {
   IconData get icon => Icons.shield;
 
   @override
-  String getClashOfClansData() {
-    return '';
+  Future<String> getClashOfClansData() {
+    return Future.value(Clan.toJson(clan));
   }
 
   @override

@@ -4,8 +4,13 @@ import 'package:flutter/material.dart';
 class AnimatedTypingText extends StatefulWidget {
   final String text;
   final String placeHolderText;
+  final MaterialColor color;
 
-  AnimatedTypingText({required this.text, required this.placeHolderText});
+  AnimatedTypingText({
+    required this.text,
+    required this.placeHolderText,
+    required this.color,
+  });
 
   @override
   _AnimatedTypingTextState createState() => _AnimatedTypingTextState();
@@ -14,11 +19,27 @@ class AnimatedTypingText extends StatefulWidget {
 class _AnimatedTypingTextState extends State<AnimatedTypingText> {
   String _displayedText = "";
   int _currentIndex = 0;
-  late Timer _timer;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
+    startTypingAnimation();
+  }
+
+  @override
+  void didUpdateWidget(AnimatedTypingText oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.text != oldWidget.text) {
+      // Text has changed, restart the animation
+      startTypingAnimation();
+    }
+  }
+
+  void startTypingAnimation() {
+    _displayedText = "";
+    _currentIndex = 0;
+    _timer?.cancel(); // Cancel any existing timer
     _timer = Timer.periodic(const Duration(milliseconds: 50), (Timer timer) {
       if (_currentIndex < widget.text.length) {
         setState(() {
@@ -26,14 +47,14 @@ class _AnimatedTypingTextState extends State<AnimatedTypingText> {
           _currentIndex++;
         });
       } else {
-        _timer.cancel();
+        _timer?.cancel();
       }
     });
   }
 
   @override
   void dispose() {
-    _timer.cancel();
+    _timer?.cancel();
     super.dispose();
   }
 
@@ -45,7 +66,7 @@ class _AnimatedTypingTextState extends State<AnimatedTypingText> {
       text,
       style: TextStyle(
         fontSize: 16.0,
-        color: isTextEmpty ? Colors.grey : Colors.black,
+        color: isTextEmpty ? Colors.grey : widget.color,
       )
     );
   }
