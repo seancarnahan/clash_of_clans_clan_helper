@@ -6,6 +6,7 @@ import 'package:clash_of_clans_clan_helper/presentation/screens/home/widgets/cla
 import 'package:clash_of_clans_clan_helper/application/services/clan_service.dart';
 import 'package:clash_of_clans_clan_helper/infrastructure/services/screen_size_service.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -63,7 +64,23 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     clanService = Provider.of<ClanService>(context, listen: false);
-
+    /* Temporary for testing -> to auto navigate to Dashboard for a clan */
+    // return FutureBuilder(
+    //   future: clanService.searchClans('OnlyStans'),
+    //   builder: (BuildContext context, AsyncSnapshot<List<Clan>> snapshots) {
+    //     if (snapshots.hasData && snapshots.connectionState == ConnectionState.done) {
+    //         var tempClan = snapshots.data![0];
+    //         WidgetsBinding.instance.addPostFrameCallback((_) {
+    //           Navigator.push(
+    //             context,
+    //             MaterialPageRoute(builder: (context) => ClanDashboardScreen(clan: tempClan)),
+    //           );
+    //         });
+    //     }
+    //     return const Text('Loading');
+    //   }
+    // );
+    
     const String clashOfClansLogoPath = 'assets/clash-of-clans-logo.png';
     bool isMobileOrTablet = ScreenSizeService.isMobileOrTablet(context);
     double imageWidthMultiplier = isMobileOrTablet ? 0.75 : 0.5;

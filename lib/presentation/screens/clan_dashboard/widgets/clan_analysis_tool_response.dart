@@ -9,7 +9,6 @@ class ClanAnalysisToolResponse extends StatelessWidget {
   const ClanAnalysisToolResponse({Key? key}) : super(key: key);
 
   String getAnalysisToolText(ClanAnalysisToolProvider clanAnalysisToolProvider) {
-
     if (clanAnalysisToolProvider.isProcessingLlmRequest) {
       return 'Processing ...';
     } else if (clanAnalysisToolProvider.llmResponse.isEmpty) {
@@ -35,8 +34,9 @@ class ClanAnalysisToolResponse extends StatelessWidget {
               top: horizontalScreenPadding,
             ),
             child: Card(
-              child: Container(
-                width: double.infinity,
+              child: SingleChildScrollView(
+                child: Container(
+                  width: double.infinity,
                   padding: const EdgeInsets.all(16.0),
                   child: AnimatedTypingText(
                     text: getAnalysisToolText(clanAnalysisToolProvider),
@@ -46,10 +46,11 @@ class ClanAnalysisToolResponse extends StatelessWidget {
                       Colors.blueGrey,
                   ),
                 ),
-            )
-          )
+              ),
+            ),
+          ),
         );
-      }
+      },
     );
   }
 }

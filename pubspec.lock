@@ -69,10 +69,10 @@ packages:
     dependency: transitive
     description:
       name: crypto
-      sha256: aa274aa7774f8964e4f4f38cc994db7b6158dd36e9187aaceaddc994b35c6c67
+      sha256: ff625774173754681d66daaf4a448684fb04b78f902da9cb3d308c19cc5e8bab
       url: "https://pub.dev"
     source: hosted
-    version: "3.0.2"
+    version: "3.0.3"
   csslib:
     dependency: transitive
     description:
@@ -97,14 +97,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
-  dart_openai:
-    dependency: "direct main"
-    description:
-      name: dart_openai
-      sha256: "963939b54e841ac7f663d958afd3d595f3e48b1887a367ff582b9f82220bee78"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -147,6 +139,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  freezed_annotation:
+    dependency: transitive
+    description:
+      name: freezed_annotation
+      sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.1"
   html:
     dependency: transitive
     description:
@@ -183,10 +183,10 @@ packages:
     dependency: transitive
     description:
       name: iregexp
-      sha256: "0bab197b31adad22c32eef580cda11338dad24ee0e46187d994baef9acee7564"
+      sha256: "143859dcaeecf6f683102786762d70a47ef8441a0d2287a158172d32d38799cf"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "0.1.2"
   js:
     dependency: transitive
     description:
@@ -195,22 +195,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.7"
+  json_annotation:
+    dependency: transitive
+    description:
+      name: json_annotation
+      sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.8.1"
   json_path:
     dependency: transitive
     description:
       name: json_path
-      sha256: c3c4b5c2b5c61f1f8b4c35d8d5062c2e4c2aeaf2b57d621757060c938bc47d9a
+      sha256: b1a3e5e34c862a6ca598e226e725647e462bde9fd98dbfa21bb53e105efeb177
       url: "https://pub.dev"
     source: hosted
-    version: "0.6.3"
+    version: "0.7.0"
   langchain:
     dependency: "direct main"
     description:
       name: langchain
-      sha256: "243eb33599ce27a010650aecd925288eaf5e3705449c8ad5d09e383b806da99e"
+      sha256: "95c2c691452391689eed1f867957377b579ddccf58481f673412a54b99e284b6"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.7+1"
+    version: "0.3.3"
+  langchain_openai:
+    dependency: "direct main"
+    description:
+      name: langchain_openai
+      sha256: "032a2abe03db9bfe84132a05911e9e9fbfa6a6a8fcf3a9a0875a805fc0072c10"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.3.3"
+  langchain_tiktoken:
+    dependency: transitive
+    description:
+      name: langchain_tiktoken
+      sha256: c1804f4b3e56574ca67e562305d9f11e3eabe3c8aa87fea8635992f7efc66674
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.1"
   lints:
     dependency: transitive
     description:
@@ -267,6 +291,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  openai_dart:
+    dependency: transitive
+    description:
+      name: openai_dart
+      sha256: "38020cd123355e1d5b6d8061ff8c39903e0a8e310a0d9f69698b0474e7627645"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.5"
   path:
     dependency: transitive
     description:
@@ -279,10 +311,10 @@ packages:
     dependency: transitive
     description:
       name: petitparser
-      sha256: cb3798bef7fc021ac45b308f4b51208a152792445cce0448c9a4ba5879dd8750
+      sha256: c15605cd28af66339f8eb6fbe0e541bfe2d1b72d5825efc6598f3e0a31b9ad27
       url: "https://pub.dev"
     source: hosted
-    version: "5.4.0"
+    version: "6.0.2"
   provider:
     dependency: "direct main"
     description:
@@ -295,10 +327,10 @@ packages:
     dependency: transitive
     description:
       name: rfc_6901
-      sha256: "8d97680dada633146cf75ab9382f2ce2b7e4bd63ceecd867416cf43b5832b988"
+      sha256: df1bbfa3d023009598f19636d6114c6ac1e0b7bb7bf6a260f0e6e6ce91416820
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.1"
+    version: "0.2.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -396,10 +428,10 @@ packages:
     dependency: transitive
     description:
       name: xml
-      sha256: ac0e3f4bf00ba2708c33fbabbbe766300e509f8c82dbd4ab6525039813f7e2fb
+      sha256: b015a8ad1c488f66851d762d3090a21c600e479dc75e68328c52774040cf9226
       url: "https://pub.dev"
     source: hosted
-    version: "6.1.0"
+    version: "6.5.0"
 sdks:
   dart: ">=3.2.4 <4.0.0"
   flutter: ">=1.16.0"
