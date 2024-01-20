@@ -34,7 +34,7 @@ class _ClanAnalysisToolDatasetOptionState extends State<ClanAnalysisToolDatasetO
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
             onTap: () {
-              clanAnalysisToolProvider.selectDataset(widget.dataset);
+              clanAnalysisToolProvider.selectDataset(widget.dataset, context);
             },
             child: Card(
               child: AnimatedContainer(

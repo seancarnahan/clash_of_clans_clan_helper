@@ -14,7 +14,7 @@ class ClanAnalysisToolProvider extends ChangeNotifier {
   bool isProcessingLlmRequest = false;
 
 
-  void selectDataset(DatasetAnalyzable dataset) async {
+  void selectDataset(DatasetAnalyzable dataset, BuildContext context) async {
     bool isNewDataset = selectedDatasetName != dataset.datasetName;
     bool canProcessDatasetLLMRequest = isNewDataset && !isProcessingLlmRequest;
 
@@ -23,7 +23,7 @@ class ClanAnalysisToolProvider extends ChangeNotifier {
       selectedDatasetName = dataset.datasetName;
       notifyListeners();
 
-      llmResponse = await dataset.processDatasetLLMRequest();
+      llmResponse = await dataset.processDatasetLLMRequest(context);
       isProcessingLlmRequest = false;
       notifyListeners();
     }

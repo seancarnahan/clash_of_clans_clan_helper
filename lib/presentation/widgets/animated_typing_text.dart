@@ -65,7 +65,7 @@ class _AnimatedTypingTextState extends State<AnimatedTypingText> {
     return Text(
       text,
       style: TextStyle(
-        fontSize: 16.0,
+        fontSize: 12.0,
         color: isTextEmpty ? Colors.grey : widget.color,
       )
     );

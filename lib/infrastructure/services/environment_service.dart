@@ -12,8 +12,7 @@ class EnvironmentService {
   String get awsSecretAccessKey => _config['AWS_SECRET_ACCESS_KEY'] ?? '';
   String get awsRegion => _config['AWS_REGION'] ?? 'us-west-2';
   String get clashOfClansApiKey => _config['CLASH_OF_CLANS_API_KEY'] ?? '';
-
-
+  String get openAIApiKey => _config['OPENAI_API_KEY'] ?? '';
 
   factory EnvironmentService() {
     return _environmentService;
@@ -26,8 +25,13 @@ class EnvironmentService {
     String jsonString = await rootBundle.loadString('config/app_config.json');
     _config = json.decode(jsonString);
 
-    // Load Clash of Clans API Key
-    _config['CLASH_OF_CLANS_API_KEY'] = await _getClashOfClansApiKey();
+    // Load Secret Manager Keys
+    var secrets = await Future.wait([
+      _getSecretsManagerKey('clash-of-clans-user-key'),
+      _getSecretsManagerKey('openai-api-key'),
+    ]);
+    _config['CLASH_OF_CLANS_API_KEY'] = secrets[0];
+    _config['OPENAI_API_KEY'] = secrets[1];
   }
 
   AwsClientCredentials _getAwsClientCredentials() {
@@ -37,7 +41,7 @@ class EnvironmentService {
     );
   }
 
-  Future<String?> _getClashOfClansApiKey() async {
+  Future<String?> _getSecretsManagerKey(String keyName) async {
     final secretsManager = SecretsManager(
       region: awsRegion,
       credentials: _getAwsClientCredentials()
@@ -48,12 +52,12 @@ class EnvironmentService {
       final secretString = response.secretString ?? '';
 
       if (secretString == '') {
-        print('ERROR: Could not find clash of clans secret key');
+        print('ERROR: Could not find $keyName');
         return null;
       }
       
       final secretJson = json.decode(secretString);
-      final apiKey = secretJson['clash-of-clans-user-key'];
+      final apiKey = secretJson[keyName];
 
       return apiKey;
     } catch (e) {
@@ -63,5 +67,4 @@ class EnvironmentService {
       secretsManager.close();
     }
   }
-
 }

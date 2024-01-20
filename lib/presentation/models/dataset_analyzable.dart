@@ -1,6 +1,7 @@
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
-import 'package:clash_of_clans_clan_helper/presentation/providers/clan_analysis_tool_provider.dart';
+import 'package:clash_of_clans_clan_helper/application/services/open_ai_service.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 
 enum AnalyzableDatasetName {
@@ -22,11 +23,11 @@ abstract class DatasetAnalyzable {
   String getLlmPrompting();
   Future<String> getClashOfClansData();
 
-  Future<String> processDatasetLLMRequest() async {
+  Future<String> processDatasetLLMRequest(BuildContext context) async {
     String sourceData = await getClashOfClansData();
-    String additionialPrompting = getLlmPrompting();
+    String llmPrompt = getLlmPrompting();
+    OpenAIService openAIService = Provider.of<OpenAIService>(context, listen: false);
 
-    // TODO implement OpenAi connection and return response
-    return Future.delayed(const Duration(seconds: 2), () => "mock LLM Response");
+    return openAIService.analyzeDataset(sourceData, llmPrompt);
   }
 }

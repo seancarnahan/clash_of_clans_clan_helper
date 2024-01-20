@@ -23,6 +23,6 @@ class ClanDatasetAnalyzable extends DatasetAnalyzable {
 
   @override
   String getLlmPrompting() {
-    return '';
+    return 'Can provide me analysis on this clash of clans clan and give me valuable insights that would help improve the clan';
   }
 }

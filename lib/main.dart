@@ -7,7 +7,8 @@ import 'package:clash_of_clans_clan_helper/presentation/themes/clash_of_clans_th
 import 'package:clash_of_clans_clan_helper/presentation/screens/home/home_screen.dart';
 import 'package:clash_of_clans_clan_helper/infrastructure/services/environment_service.dart';
 import 'package:clash_of_clans_clan_helper/infrastructure/api/clash_of_clans_api.dart';
-
+import 'package:clash_of_clans_clan_helper/application/services/open_ai_service.dart';
+import 'package:clash_of_clans_clan_helper/infrastructure/api/open_ai_api.dart';
 
 void main() {
   runApp(
@@ -20,7 +21,11 @@ void main() {
           update: (_, api, __) => ClanService(api),
         ),
 
-        // Other Service
+        // Open AI Service
+        Provider(create: (_) => OpenAIApi()),
+        ProxyProvider<OpenAIApi, OpenAIService>(
+          update: (_, api, __) => OpenAIService(api)
+        ),
       ],
       child: const MyApp(),
     )
