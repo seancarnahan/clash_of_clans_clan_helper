@@ -37,7 +37,6 @@ class Clan {
   final ClanCapital? clanCapital;
   final Location? location;
   final Language? chatLanguage;
-  
 
   Clan({
     required this.tag,
