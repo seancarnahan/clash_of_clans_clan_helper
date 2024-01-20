@@ -19,6 +19,6 @@ class OpenAIApi implements OpenAIRepository {
       options: options,
     );
 
-    return result.firstOutputAsString;
+    return result.firstOutputAsString.trim();
   }
 }
