@@ -40,7 +40,7 @@ class _AnimatedTypingTextState extends State<AnimatedTypingText> {
     _displayedText = "";
     _currentIndex = 0;
     _timer?.cancel(); // Cancel any existing timer
-    _timer = Timer.periodic(const Duration(milliseconds: 50), (Timer timer) {
+    _timer = Timer.periodic(const Duration(milliseconds: 5), (Timer timer) {
       if (_currentIndex < widget.text.length) {
         setState(() {
           _displayedText += widget.text[_currentIndex];
