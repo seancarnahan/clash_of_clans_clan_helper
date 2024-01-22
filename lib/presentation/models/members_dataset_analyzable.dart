@@ -25,7 +25,7 @@ class MembersDatasetAnalyzable extends DatasetAnalyzable {
     List<Member> members = await clanService.getMembers(clan.tag);
 
     return jsonEncode({
-      'members': members.map((member) => Member.toJson(member)).toList(),
+      'members': members.sublist(0, 25).map((member) => Member.toJson(member)).toList(),
     });
   }
 
