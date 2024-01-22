@@ -30,7 +30,7 @@ class ClanService {
     return await clanRepository.getMembers(clanTag);
   }
 
-  Future<WarLog> getWarLog(String clanTag) async {
+  Future<List<WarLog>> getWarLog(String clanTag) async {
     return await clanRepository.getWarLog(clanTag);
   }
 }

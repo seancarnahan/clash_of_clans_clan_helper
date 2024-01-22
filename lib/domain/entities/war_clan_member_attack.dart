@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class WarClanMemberAttack {
-  final int order;
-  final String attackerTag;
-  final String defenderTag;
-  final int stars;
-  final double destructionPercentage;
-  final int duration;
+  final int? order;
+  final String? attackerTag;
+  final String? defenderTag;
+  final int? stars;
+  final double? destructionPercentage;
+  final int? duration;
 
   WarClanMemberAttack({
     required this.order,

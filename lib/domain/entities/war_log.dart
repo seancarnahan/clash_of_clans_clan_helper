@@ -5,10 +5,10 @@ import 'package:clash_of_clans_clan_helper/domain/entities/war_clan.dart';
 class WarLog {
   final WarClan clan;
   final WarClan opponent;
-  final int teamSize;
-  final int attacksPerMember;
-  final String endtime;
-  final String result;
+  final int? teamSize;
+  final int? attacksPerMember;
+  final String? endtime;
+  final String? result;
 
   WarLog({
     required this.clan,

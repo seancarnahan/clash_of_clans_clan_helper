@@ -10,5 +10,5 @@ abstract class ClanRepository {
   Future<League> getLeague(String leagueId);
   Future<Location> getLocation(String locationId);
   Future<List<Member>> getMembers(String clanTag);
-  Future<WarLog> getWarLog(String clanTag);
+  Future<List<WarLog>> getWarLog(String clanTag);
 }

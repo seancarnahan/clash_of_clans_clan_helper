@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 
 import 'package:clash_of_clans_clan_helper/domain/entities/war_log.dart';
@@ -20,13 +22,15 @@ class WarDatasetAnalyzable extends DatasetAnalyzable {
 
   @override
   Future<String> getClashOfClansData(ClanService clanService) async {
-    WarLog warLog = await clanService.getWarLog(clan.tag);
+    List<WarLog> warLog = await clanService.getWarLog(clan.tag);
 
-    return WarLog.toJson(warLog);
+    return jsonEncode({
+      'warLog': warLog.sublist(0, 3).map((log) => WarLog.toJson(log)).toList(),
+    });
   }
 
   @override
   String getLlmPrompting() {
-    return 'This is the war log of a clan in clash of clans. Can you pull some interesting insights, trends, and advice from the last couple of wars. Try to be specific and avoid generic terminology or advice.';
+    return 'This is the war log of the past 3 wars in clash of clans. Can you pull some interesting insights, trends, and advice from the last couple of wars. Try to be specific and avoid generic terminology or advice.';
   }
 }

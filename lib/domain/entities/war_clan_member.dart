@@ -3,11 +3,11 @@ import 'dart:convert';
 import 'package:clash_of_clans_clan_helper/domain/entities/war_clan_member_attack.dart';
 
 class WarClanMember {
-  final String tag;
-  final String name;
-  final int mapPosition;
-  final int townhallLevel;
-  final int opponentAttacks;
+  final String? tag;
+  final String? name;
+  final int? mapPosition;
+  final int? townhallLevel;
+  final int? opponentAttacks;
   final WarClanMemberAttack bestOpponentAttack;
   final List<WarClanMemberAttack> attacks;
 

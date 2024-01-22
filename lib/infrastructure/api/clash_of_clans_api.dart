@@ -102,14 +102,18 @@ class ClashOfClansApi implements ClanRepository {
     );
 
     if (response.statusCode == 200) {
-      return [];
+      return List<Member>.from(
+        json.decode(response.body)["items"].map(
+          (x) => Member.fromJson(x)
+        )
+      );
     } else {
       throw Exception('Failed to load member details');
     }
   }
 
   @override
-  Future<WarLog> getWarLog(String clanTag) async {
+  Future<List<WarLog>> getWarLog(String clanTag) async {
     final Uri uri = Uri.parse('$baseUrl/clans/$clanTag/warlog'.replaceAll('#', '%23'));
     final response = await http.get(
       uri,
@@ -119,7 +123,11 @@ class ClashOfClansApi implements ClanRepository {
     );
 
     if (response.statusCode == 200) {
-      return WarLog.fromJson(json.decode(response.body));
+      return List<WarLog>.from(
+        json.decode(response.body)["items"].map(
+          (x) => WarLog.fromJson(x)
+        )
+      );
     } else {
       throw Exception('Failed to load war log details');
     }

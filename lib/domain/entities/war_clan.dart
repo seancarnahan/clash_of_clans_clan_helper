@@ -4,14 +4,14 @@ import 'package:clash_of_clans_clan_helper/domain/entities/badge_urls.dart';
 import 'package:clash_of_clans_clan_helper/domain/entities/war_clan_member.dart';
 
 class WarClan {
-  final double destructionPercentage;
-  final String tag;
-  final String name;
+  final double? destructionPercentage;
+  final String? tag;
+  final String? name;
   final BadgeUrls badgeUrls;
-  final int clanLevel;
-  final int attacks;
-  final int stars;
-  final int expEarned;
+  final int? clanLevel;
+  final int? stars;
+  final int? attacks;
+  final int? expEarned;
   final List<WarClanMember> members;
 
   WarClan({
