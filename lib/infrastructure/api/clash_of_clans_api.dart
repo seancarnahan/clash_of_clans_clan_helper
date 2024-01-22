@@ -15,21 +15,19 @@ import 'package:clash_of_clans_clan_helper/domain/entities/clan.dart';
 class ClashOfClansApi implements ClanRepository {
   final String baseUrl = 'https://api.clashofclans.com/v1';
   final String apiToken = EnvironmentService().clashOfClansApiKey;
-  final int searchedClansResultLimit = 10;
 
   @override
   Future<List<Clan>> searchClans(String name) async {
     Response? response;
     try {
       response = await http.get(
-        Uri.parse('$baseUrl/clans?name=$name&limit=$searchedClansResultLimit'),
+        Uri.parse('$baseUrl/clans?name=$name'),
         headers: {
           'Authorization': 'Bearer $apiToken',
           "content-type": "application/json"
         },
       );
     } catch (error) {
-      print(error);
       throw Exception('Http request for searching clans failed');
     }
     
@@ -38,12 +36,9 @@ class ClashOfClansApi implements ClanRepository {
         List<dynamic> clansJson = json.decode(response.body)['items'];
         return clansJson.map((clanJson) => Clan.fromJson(clanJson)).toList();
       } catch (error) {
-        print(error);
         throw Exception('Unable to parse searched clans result + $error');
       }
     } else {
-      print(response.body);
-      print(response.statusCode);
       throw Exception('Failed to search clans');
     }
   }
@@ -67,7 +62,7 @@ class ClashOfClansApi implements ClanRepository {
   @override
   Future<League> getLeague(String leagueId) async {
     final response = await http.get(
-      Uri.parse('$baseUrl/leagues/$leagueId'),
+      Uri.parse('$baseUrl/warleagues/$leagueId'),
       headers: {
         'Authorization': 'Bearer $apiToken',
       },
@@ -76,7 +71,6 @@ class ClashOfClansApi implements ClanRepository {
     if (response.statusCode == 200) {
       return League.fromJson(json.decode(response.body));
     } else {
-      print(response);
       throw Exception('Failed to load league details');
     }
   }
@@ -93,33 +87,32 @@ class ClashOfClansApi implements ClanRepository {
     if (response.statusCode == 200) {
       return Location.fromJson(json.decode(response.body));
     } else {
-      print(response);
       throw Exception('Failed to load location details');
     }
   }
 
   @override
   Future<List<Member>> getMembers(String clanTag) async {
+    final Uri uri = Uri.parse('$baseUrl/clans/$clanTag/members'.replaceAll('#', '%23'));
     final response = await http.get(
-      Uri.parse('$baseUrl/clans/$clanTag/members'),
+      uri,
       headers: {
         'Authorization': 'Bearer $apiToken',
       },
     );
 
     if (response.statusCode == 200) {
-      print(response.body);
       return [];
     } else {
-      print(response);
       throw Exception('Failed to load member details');
     }
   }
 
   @override
   Future<WarLog> getWarLog(String clanTag) async {
+    final Uri uri = Uri.parse('$baseUrl/clans/$clanTag/warlog'.replaceAll('#', '%23'));
     final response = await http.get(
-      Uri.parse('$baseUrl/clans/$clanTag/warLog'),
+      uri,
       headers: {
         'Authorization': 'Bearer $apiToken',
       },
@@ -128,7 +121,6 @@ class ClashOfClansApi implements ClanRepository {
     if (response.statusCode == 200) {
       return WarLog.fromJson(json.decode(response.body));
     } else {
-      print(response);
       throw Exception('Failed to load war log details');
     }
   }

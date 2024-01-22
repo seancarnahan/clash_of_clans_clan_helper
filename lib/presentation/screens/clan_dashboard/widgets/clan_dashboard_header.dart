@@ -11,7 +11,6 @@ class ClanDashboardHeader extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     bool isMobile = screenWidth < AppConstants.mobileOrTabletBreakpoint;
     double imageHeight = screenHeight * 0.3;
-    double cardWidthScalar = isMobile ? 0.25 : 0.20;
 
     return Stack(
         children: <Widget>[
